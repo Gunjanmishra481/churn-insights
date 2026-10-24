@@ -1,0 +1,35 @@
+# Data: raw Kaggle CSVs and processed outputs are never committed
+data/
+
+# Secrets (Snowflake credentials, LLM API keys, private keys)
+.env
+*.p8
+*.pem
+*.key
+
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Spark local artifacts
+spark-warehouse/
+metastore_db/
+derby.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Trained model files (rebuilt by python -m src.train_churn)
+models/
+
+# Local working notes (not part of the published project)
+CLAUDE.md
+docs/review_phase2_3.md

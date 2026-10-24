@@ -1,0 +1,6 @@
+hypothesis,test,group_a,group_b,n_a,n_b,value_a,value_b,statistic,p_value,effect_size,effect_size_name,p_holm,reject_H0
+H1: late delivery -> lower review score,Mann-Whitney U,late,on time,6381,89443,2.27,4.29,103305546.0,0.0,-0.638,rank-biserial r,0.0,True
+H2: late delivery -> 1-2 star review,Chi-square (2x2),late,on time,6381,89443,0.6242,0.0927,15064.1,0.0,6.735,relative risk (Cramer's V = 0.396),0.0,True
+H3: late first order -> return within 180d,Chi-square (2x2),late first order,on-time first order,3927,52491,0.0158,0.0201,3.3,0.06899790580381888,0.785,relative risk (Cramer's V = 0.008),0.06899790580381888,False
+H4: 1-2 star first review -> return within 180d,Chi-square (2x2),1-2 star first review,3-5 star first review,8329,48774,0.0162,0.0204,6.3,0.012164214070323675,0.794,relative risk (Cramer's V = 0.010),0.02432842814064735,True
+H5: delivery days differ by state,Kruskal-Wallis,fastest: SP,slowest: AM,40494,145,7.0,26.0,24064.0,0.0,0.249,epsilon-squared (27 groups),0.0,True

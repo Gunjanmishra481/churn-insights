@@ -1,0 +1,193 @@
+{
+  "best_ml_model_on_validation": "XGBoost unweighted, core features",
+  "xgboost_model_saved": "XGBoost unweighted, core features",
+  "thresholds": {
+    "Logistic regression (balanced)": 0.7203411620574477,
+    "XGBoost unweighted, core features": 0.03186342492699623
+  },
+  "train_cutoffs": [
+    "2017-02-01",
+    "2017-03-01",
+    "2017-04-01",
+    "2017-05-01",
+    "2017-06-01",
+    "2017-07-01",
+    "2017-08-01",
+    "2017-09-01"
+  ],
+  "test_cutoffs": [
+    "2018-03-01"
+  ],
+  "folds": [
+    [
+      [
+        "2017-02-01",
+        "2017-03-01",
+        "2017-04-01",
+        "2017-05-01"
+      ],
+      [
+        "2017-08-01"
+      ]
+    ],
+    [
+      [
+        "2017-02-01",
+        "2017-03-01",
+        "2017-04-01",
+        "2017-05-01",
+        "2017-06-01"
+      ],
+      [
+        "2017-09-01"
+      ]
+    ],
+    [
+      [
+        "2017-02-01",
+        "2017-03-01",
+        "2017-04-01",
+        "2017-05-01",
+        "2017-06-01",
+        "2017-07-01"
+      ],
+      [
+        "2017-10-01"
+      ]
+    ]
+  ],
+  "features": [
+    "recency_days",
+    "tenure_days",
+    "frequency",
+    "n_orders",
+    "monetary_total",
+    "avg_order_value",
+    "avg_items_per_order",
+    "avg_freight_ratio",
+    "share_orders_late",
+    "avg_review_score",
+    "share_low_reviews",
+    "share_reviews_with_comment",
+    "n_categories",
+    "last_delay_days",
+    "last_delivery_days",
+    "last_estimated_days",
+    "last_review_score",
+    "last_max_installments",
+    "last_n_items",
+    "last_freight_ratio",
+    "last_is_late",
+    "last_order_in_transit",
+    "last_used_voucher",
+    "last_review_has_comment",
+    "customer_state",
+    "last_payment_type",
+    "last_category"
+  ],
+  "core_features": [
+    "recency_days",
+    "frequency",
+    "monetary_total",
+    "tenure_days",
+    "avg_order_value",
+    "avg_review_score",
+    "share_orders_late",
+    "last_review_score",
+    "last_is_late",
+    "last_order_in_transit",
+    "last_max_installments"
+  ],
+  "xgb_encoded_feature_names": [
+    "num__recency_days",
+    "num__frequency",
+    "num__monetary_total",
+    "num__tenure_days",
+    "num__avg_order_value",
+    "num__avg_review_score",
+    "num__share_orders_late",
+    "num__last_review_score",
+    "num__last_is_late",
+    "num__last_order_in_transit",
+    "num__last_max_installments"
+  ],
+  "validation_summary": {
+    "RFM rule (no ML)": {
+      "pr_auc": 0.03284943890407849,
+      "roc_auc": 0.5749320287540334,
+      "recall_at_top5pct": 0.10445598711500502,
+      "lift_at_top5pct": 2.0880622860865286
+    },
+    "XGBoost unweighted, core features": {
+      "pr_auc": 0.02526123328174347,
+      "roc_auc": 0.5705589090531018,
+      "recall_at_top5pct": 0.09507559506285147,
+      "lift_at_top5pct": 1.9004506633881881
+    },
+    "XGBoost weighted, all features": {
+      "pr_auc": 0.02463158515421872,
+      "roc_auc": 0.5948113478353372,
+      "recall_at_top5pct": 0.09573822265061833,
+      "lift_at_top5pct": 1.913809591027288
+    },
+    "Logistic regression (balanced)": {
+      "pr_auc": 0.02388149900759634,
+      "roc_auc": 0.5684951827742496,
+      "recall_at_top5pct": 0.08279276954120429,
+      "lift_at_top5pct": 1.6548844736387849
+    },
+    "XGBoost unweighted, all features": {
+      "pr_auc": 0.020847751203308937,
+      "roc_auc": 0.5715226749191823,
+      "recall_at_top5pct": 0.07916278465752498,
+      "lift_at_top5pct": 1.5824285447211228
+    }
+  },
+  "test_metrics": {
+    "RFM rule (no ML)": {
+      "n": 56630,
+      "positives": 670,
+      "base_rate": 0.011831184884336925,
+      "pr_auc": 0.034460082081471596,
+      "roc_auc": 0.587664216444582,
+      "recall_at_top5pct": 0.13880597014925372,
+      "precision_at_top5pct": 0.03283898305084746,
+      "lift_at_top5pct": 2.775629268909689,
+      "threshold": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "flagged": NaN
+    },
+    "Logistic regression (balanced)": {
+      "n": 56630,
+      "positives": 670,
+      "base_rate": 0.011831184884336925,
+      "pr_auc": 0.0240081411759967,
+      "roc_auc": 0.5781337282493891,
+      "recall_at_top5pct": 0.1328358208955224,
+      "precision_at_top5pct": 0.031426553672316386,
+      "lift_at_top5pct": 2.6562473648705622,
+      "threshold": 0.7203411620574477,
+      "precision": 0.05244755244755245,
+      "recall": 0.06716417910447761,
+      "f1": 0.058900523560209424,
+      "flagged": 858.0
+    },
+    "XGBoost unweighted, core features": {
+      "n": 56630,
+      "positives": 670,
+      "base_rate": 0.011831184884336925,
+      "pr_auc": 0.024746735826738326,
+      "roc_auc": 0.5940693779138617,
+      "recall_at_top5pct": 0.11791044776119403,
+      "precision_at_top5pct": 0.0278954802259887,
+      "lift_at_top5pct": 2.3577926047727464,
+      "threshold": 0.03186342492699623,
+      "precision": 0.041044776119402986,
+      "recall": 0.08208955223880597,
+      "f1": 0.05472636815920398,
+      "flagged": 1340.0
+    }
+  }
+}

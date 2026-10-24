@@ -1,0 +1,50 @@
+check,table,target,severity,passed,n_failing,n_total,detail
+unique,orders,order_id,error,True,0,99441,0 duplicate rows on key
+unique,customers,customer_id,error,True,0,99441,0 duplicate rows on key
+unique,products,product_id,error,True,0,32951,0 duplicate rows on key
+unique,sellers,seller_id,error,True,0,3095,0 duplicate rows on key
+unique,category_translation,product_category_name,error,True,0,71,0 duplicate rows on key
+unique,order_items,"order_id,order_item_id",error,True,0,112650,0 duplicate rows on key
+unique,order_payments,"order_id,payment_sequential",error,True,0,103886,0 duplicate rows on key
+unique,order_reviews,"review_id,order_id",error,True,0,99224,0 duplicate rows on key
+foreign_key,orders,customer_id -> customers.customer_id,error,True,0,99441,0 orphan rows
+foreign_key,order_items,order_id -> orders.order_id,error,True,0,112650,0 orphan rows
+foreign_key,order_items,product_id -> products.product_id,error,True,0,112650,0 orphan rows
+foreign_key,order_items,seller_id -> sellers.seller_id,error,True,0,112650,0 orphan rows
+foreign_key,order_payments,order_id -> orders.order_id,error,True,0,103886,0 orphan rows
+foreign_key,order_reviews,order_id -> orders.order_id,error,True,0,99224,0 orphan rows
+not_null,orders,customer_id,error,True,0,99441,0 nulls
+not_null,orders,order_status,error,True,0,99441,0 nulls
+not_null,orders,order_purchase_timestamp,error,True,0,99441,0 nulls
+not_null,orders,order_estimated_delivery_date,error,True,0,99441,0 nulls
+not_null,customers,customer_unique_id,error,True,0,99441,0 nulls
+not_null,order_items,price,error,True,0,112650,0 nulls
+not_null,order_payments,payment_value,error,True,0,103886,0 nulls
+not_null,order_reviews,review_score,error,True,0,99224,0 nulls
+in_range,order_reviews,review_score,error,True,0,99224,"0 values outside [1, 5]"
+in_range,order_items,price,error,True,0,112650,"0 values outside [0.01, None]"
+in_range,order_items,freight_value,error,True,0,112650,"0 values outside [0, None]"
+in_range,order_payments,payment_value,error,True,0,103886,"0 values outside [0, None]"
+has_match,orders,order_id in order_items.order_id,warning,False,775,99441,775 rows with no match
+has_match,orders,order_id in order_payments.order_id,warning,False,1,99441,1 rows with no match
+unique,order_reviews,order_id,warning,False,551,99224,551 duplicate rows on key
+unique,order_reviews,review_id,warning,False,814,99224,814 duplicate rows on key
+not_null,products,product_category_name,warning,False,610,32951,610 nulls
+foreign_key,products,product_category_name -> category_translation.product_category_name,warning,False,13,32341,13 orphan rows
+in_range,order_payments,payment_installments,warning,False,2,103886,"2 values outside [1, None]"
+delivered_no_date,orders,order_delivered_customer_date,warning,False,8,99441,8 rows match
+timestamp_order,orders,purchase<=approved<=carrier<=delivered,warning,False,189,99441,189 rows match
+unique,geolocation,"geolocation_zip_code_prefix,geolocation_lat,geolocation_lng,geolocation_city,geolocation_state",warning,False,261831,1000163,"261,831 duplicate rows on key"
+foreign_key,customers,customer_zip_code_prefix -> geolocation.geolocation_zip_code_prefix,warning,False,278,99441,278 orphan rows
+row_count,orders_enriched,*,error,True,0,99441,"expected 99,441, got 99,441"
+unique,orders_enriched,order_id,error,True,0,99441,0 duplicate rows on key
+not_null,orders_enriched,customer_unique_id,error,True,0,99441,0 nulls
+row_count,order_items_clean,*,error,True,0,112650,"expected 112,650, got 112,650"
+unique,order_items_clean,"order_id,order_item_id",error,True,0,112650,0 duplicate rows on key
+row_count,reviews_clean,*,error,True,0,99224,"expected 99,224, got 99,224"
+unique,geo_by_zip,zip_code_prefix,error,True,0,19010,0 duplicate rows on key
+sum_matches,orders_enriched,items_price_total,error,True,0,1,"expected 13,591,643.70, got 13,591,643.70"
+sum_matches,orders_enriched,freight_total,error,True,0,1,"expected 2,251,909.54, got 2,251,909.54"
+sum_matches,orders_enriched,payment_total,error,True,0,1,"expected 16,008,872.12, got 16,008,872.12"
+payment_vs_items,orders_enriched,payment_total ~ items_price_total + freight_total,warning,False,249,98665,"249 of 98,665 orders (0.25%) mismatch beyond max(R$1.00, 1%): 232 paid more, 17 paid less"
+not_null,orders_enriched,customer_lat,warning,False,279,99441,279 nulls
